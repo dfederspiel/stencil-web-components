@@ -6,6 +6,14 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface DropdownList {
+    }
+    interface FancyCards {
+        "things": { title: string }[];
+    }
+    /**
+     * The custom component
+     */
     interface MyComponent {
         /**
           * The first name
@@ -20,19 +28,54 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface ThingComponent {
+        "title": string;
+    }
 }
 declare global {
+    interface HTMLDropdownListElement extends Components.DropdownList, HTMLStencilElement {
+    }
+    var HTMLDropdownListElement: {
+        prototype: HTMLDropdownListElement;
+        new (): HTMLDropdownListElement;
+    };
+    interface HTMLFancyCardsElement extends Components.FancyCards, HTMLStencilElement {
+    }
+    var HTMLFancyCardsElement: {
+        prototype: HTMLFancyCardsElement;
+        new (): HTMLFancyCardsElement;
+    };
+    /**
+     * The custom component
+     */
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLThingComponentElement extends Components.ThingComponent, HTMLStencilElement {
+    }
+    var HTMLThingComponentElement: {
+        prototype: HTMLThingComponentElement;
+        new (): HTMLThingComponentElement;
+    };
     interface HTMLElementTagNameMap {
+        "dropdown-list": HTMLDropdownListElement;
+        "fancy-cards": HTMLFancyCardsElement;
         "my-component": HTMLMyComponentElement;
+        "thing-component": HTMLThingComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface DropdownList {
+    }
+    interface FancyCards {
+        "things"?: { title: string }[];
+    }
+    /**
+     * The custom component
+     */
     interface MyComponent {
         /**
           * The first name
@@ -47,15 +90,27 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface ThingComponent {
+        "title"?: string;
+    }
     interface IntrinsicElements {
+        "dropdown-list": DropdownList;
+        "fancy-cards": FancyCards;
         "my-component": MyComponent;
+        "thing-component": ThingComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "dropdown-list": LocalJSX.DropdownList & JSXBase.HTMLAttributes<HTMLDropdownListElement>;
+            "fancy-cards": LocalJSX.FancyCards & JSXBase.HTMLAttributes<HTMLFancyCardsElement>;
+            /**
+             * The custom component
+             */
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "thing-component": LocalJSX.ThingComponent & JSXBase.HTMLAttributes<HTMLThingComponentElement>;
         }
     }
 }

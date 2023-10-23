@@ -1,0 +1,15 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,700italic|Josefin+Slab:700italic,400,400italic,700);
+
+:host {
+  font-size: 62.5%;
+  --container-height: 30rem;
+  display: block;
+}
+
+.item-wrapper {
+    display: flex;
+    height: var(--container-height);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
